@@ -18,11 +18,12 @@ case class Main() {
       if(isValid(Fragment(x))){
         SenderServiceClient.apply.sendFragmentInfo(Fragment(x))
         Right(Fragment(x))
-      }
+      } else {
         Left(Error())
       }
+      }
 
-  def run(input: List[Int]) ={
+  def run(input: List[Int]): NotUsed ={
     source(input).via(eventFlow()).to(Sink.foreach(println(_))).run()
   }
 }
