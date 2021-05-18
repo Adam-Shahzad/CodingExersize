@@ -6,7 +6,8 @@ trait SenderService {
 }
 
 class SenderServiceClient extends SenderService {
-    override def sendFragmentInfo(fragment:  Fragment): Future[Unit] = ???
+    override def sendFragmentInfo(fragment:  Fragment): Future[Unit] =
+      Future.successful()
 }
 
 object SenderServiceClient {

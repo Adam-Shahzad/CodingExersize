@@ -8,7 +8,7 @@ import org.scalatest.wordspec.FixtureAnyWordSpec
 
 class flowSpec extends FixtureAnyWordSpec with Matchers{
 
-  "Consume data and send via sender Service" in { f =>
+  "Consume valid data and send via sender Service" in { f =>
     import f._
       Main().run(List(0x781002))
       verify(mockSenderService).sendFragmentInfo(Fragment(0x781002))
@@ -18,6 +18,13 @@ class flowSpec extends FixtureAnyWordSpec with Matchers{
     import f._
     Main().run(List(0))
     verify(mockSenderService, Mockito.times(0))   .sendFragmentInfo(Fragment(0x781002))
+  }
+
+
+  "Consume both valid invalid data and act acordingly" in { f =>
+    import f._
+    Main().run(List(0x781002, 0))
+    verify(mockSenderService, Mockito.times(1))   .sendFragmentInfo(Fragment(0x781002))
   }
 
 
