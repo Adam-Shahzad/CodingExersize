@@ -9,13 +9,22 @@ class fragmentSpec extends AnyWordSpec with Matchers {
         Fragment.extractSegmentFromBinaryToInt(0x781002, 1, 32) shouldBe 7868418
       }
 
-      "create new fragment from Hex Int" in {
+      "create new fragment from Hex Int 0x781002" in {
         val x: Int = 0x781002
         Fragment(x).matchTime shouldBe 15
         Fragment(x).pointsScored shouldBe 2
         Fragment(x).team1PointsTotal shouldBe 2
         Fragment(x).team2PointsTotal shouldBe 0
         Fragment(x).whoScored shouldBe 0
+      }
+
+      "create new fragment from Hex Int 0xf0101f" in {
+        val x: Int = 0xf0101f
+        Fragment(x).matchTime shouldBe 30
+        Fragment(x).pointsScored shouldBe 3
+        Fragment(x).team1PointsTotal shouldBe 2
+        Fragment(x).team2PointsTotal shouldBe 3
+        Fragment(x).whoScored shouldBe 1
       }
 
       //potential validations
