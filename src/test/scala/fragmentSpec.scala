@@ -1,4 +1,5 @@
 import com.coding.exersises.Fragment
+import com.coding.exersises.Fragment.isValid
 import org.scalatest.matchers.must.Matchers
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 import org.scalatest.wordspec.AnyWordSpec
@@ -27,8 +28,15 @@ class fragmentSpec extends AnyWordSpec with Matchers {
         Fragment(x).whoScored shouldBe 1
       }
 
+      "Fragment.isValid returns false if match time is 0" in {
+        isValid(Fragment(0,1,1,1,1)).shouldBe(false)
+      }
+
+      "Fragment.isValid returns false if points scored is 0" in {
+        isValid(Fragment(1,1,1,1,0)).shouldBe(false)
+      }
+
       //potential validations
-      // max pointsScored should limit from 1-3 (think basketball)
       // points scored should equal diff of player scores from previous fragment
       // who scored - should validate with team who points changed
       // pointsScored + total + matchtime should always increase

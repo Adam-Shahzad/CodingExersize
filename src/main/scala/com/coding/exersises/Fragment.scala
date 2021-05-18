@@ -9,9 +9,8 @@ object Fragment {
   }
 
   def isValid(fragment: Fragment): Boolean = {
-    fragment.matchTime == 0 || fragment.pointsScored == 0
+    !(fragment.matchTime == 0 || fragment.pointsScored == 0)
   }
-
 
     def apply(input: Int): Fragment = {
       val matchTime        = extractSegmentFromBinaryToInt(input, 1,13)
