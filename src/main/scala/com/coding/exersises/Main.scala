@@ -6,7 +6,7 @@ import com.coding.exersises.Fragment.isValid
 
 import scala.concurrent.ExecutionContext
 
-object Main extends App {
+case class Main() {
   implicit val system: ActorSystem = ActorSystem("Main")
   implicit val executionContext: ExecutionContext = system.dispatcher
   implicit val scheduler: Scheduler               = system.scheduler
@@ -22,6 +22,7 @@ object Main extends App {
         Left(Error())
       }
 
-  val sink = source(Data.badInput).via(eventFlow()).to(Sink.foreach(println(_)))
-  sink.run()
+  def run(input: List[Int]) ={
+    source(input).via(eventFlow()).to(Sink.foreach(println(_))).run()
+  }
 }

@@ -41,5 +41,6 @@ class fragmentSpec extends AnyWordSpec with Matchers {
       // who scored - should validate with team who points changed
       // pointsScored + total + matchtime should always increase
       // verify that sendFragment is called
+      // verify that sendFragment is not called when fragment is bad
 
 }
