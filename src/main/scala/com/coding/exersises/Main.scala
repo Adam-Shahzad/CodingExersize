@@ -10,13 +10,14 @@ case class Main() {
   implicit val system: ActorSystem = ActorSystem("Main")
   implicit val executionContext: ExecutionContext = system.dispatcher
   implicit val scheduler: Scheduler               = system.scheduler
+  val senderService: SenderServiceClient          = SenderServiceClient()
 
   def source(input: List[Int]): Source[Int, NotUsed] = Source(input)
 
   private def eventFlow(): Flow[Int, Either[Error,Fragment], NotUsed] = Flow[Int].map{
     x =>
       if(isValid(Fragment(x))){
-        SenderServiceClient.apply.sendFragmentInfo(Fragment(x))
+        senderService.sendFragmentInfo(Fragment(x))
         Right(Fragment(x))
       } else {
         Left(Error())

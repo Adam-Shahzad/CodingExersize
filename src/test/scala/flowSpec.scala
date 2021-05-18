@@ -1,4 +1,3 @@
-import com.coding.exersises.Fragment.isValid
 import com.coding.exersises.{Fragment, Main, SenderService, SenderServiceClient}
 import org.mockito.ArgumentMatchers.any
 import org.mockito.{Mock, Mockito}
@@ -13,7 +12,7 @@ class flowSpec extends FixtureAnyWordSpec with Matchers{
   "Consume valid data and send via sender Service" in { f =>
     import f._
       Main().run(List(0x781002))
-      verify(mockSenderService).sendFragmentInfo(Fragment(any))
+      verify(mockSenderService).sendFragmentInfo(any)
   }
 
   "Consume invalid data and not send via sender Service" in { f =>

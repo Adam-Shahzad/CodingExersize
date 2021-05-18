@@ -5,11 +5,7 @@ trait SenderService {
    def sendFragmentInfo(fragment: Fragment): Future[Unit]
 }
 
-class SenderServiceClient extends SenderService {
-    override def sendFragmentInfo(fragment:  Fragment): Future[Unit] =
-      Future.successful()
+case class SenderServiceClient() extends SenderService {
+    override def sendFragmentInfo(fragment:  Fragment): Future[Unit] = Future.successful()
 }
 
-object SenderServiceClient {
-  def apply = new SenderServiceClient
-}
